@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @events = Event.page(params[:page]).per(5)
   end
 
-  # GET /events/show/:id
+  # GET /events/:id
   def show
   end
 
@@ -18,36 +18,36 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  # POST /events/create
+  # POST /events
   def create
     @event = Event.new(event_params)
     if @event.save
       flash[:notice] = "新增成功"
-      redirect_to :action => :index
+      redirect_to events_path
     else
-      render :action => :new
+      render new_event_path
     end
   end
 
-  # GET /events/edit/:id
+  # GET /events/:id/edit
   def edit
   end
 
-  # POST /events/update/:id
+  # PATCH /events/:id
   def update
     if @event.update(event_params)
-      redirect_to :action => :show, :id => @event
+      redirect_to event_path(@event)
       flash[:notice] = "編輯成功"
     else
-      render :action => :edit
+      render edit_event_path(@event)
     end
   end
 
-  # GET /events/destroy/:id
+  # DELETE /events/:id
   def destroy
     @event.destroy
     flash[:alert] = "刪除成功"
-    redirect_to :action => :index
+    redirect_to events_path
   end
 
 
