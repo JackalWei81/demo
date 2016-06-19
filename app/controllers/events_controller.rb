@@ -21,8 +21,12 @@ class EventsController < ApplicationController
   # POST /events/create
   def create
     @event = Event.new(event_params)
-    @event.save
-    redirect_to :action => :index
+    if @event.save
+      flash[:notice] = "新增成功"
+      redirect_to :action => :index
+    else
+      render :action => :new
+    end
   end
 
   # GET /events/edit/:id
@@ -31,13 +35,18 @@ class EventsController < ApplicationController
 
   # POST /events/update/:id
   def update
-    @event.update(event_params)
-    redirect_to :action => :show, :id => @event
+    if @event.update(event_params)
+      redirect_to :action => :show, :id => @event
+      flash[:notice] = "編輯成功"
+    else
+      render :action => :edit
+    end
   end
 
   # GET /events/destroy/:id
   def destroy
     @event.destroy
+    flash[:alert] = "刪除成功"
     redirect_to :action => :index
   end
 
