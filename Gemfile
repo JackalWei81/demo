@@ -21,6 +21,7 @@ gem 'paperclip'
 
 gem 'devise'
 
+gem 'ransack'
 #postgresql
 gem 'pg'
 gem 'rails_12factor', group: :production

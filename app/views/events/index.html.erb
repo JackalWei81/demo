@@ -2,9 +2,17 @@
 <p>
   <%= link_to "Latest events", latest_events_path %>
 </p>
-<%= form_tag events_path, :method => :get do %>
+<!--<%= form_tag events_path, :method => :get do %>
   <%= text_field_tag "keyword" %>
   <%= submit_tag "Search" %>
+<% end %> 改用ransack的keyword search，所以封閉 -->
+
+<%= search_form_for @q do |f| %>
+  <%= link_to "ID ASC", events_path( :sort => "id") %>
+  <%= f.label :name_cont %>
+  <%= link_to "ID DESC", events_path( :sort => "") %>
+  <%= f.search_field :name_cont %>
+<%= f.submit "Search" %>
 <% end %>
 
 <%= link_to 'Sort by Name', events_path( :order => "name") %>

@@ -8,7 +8,6 @@ class EventsController < ApplicationController
   # GET /events/index
   # GET /events
   def index
-
     prepare_variable_for_index_template
     #提供支援別的檔案格式
     respond_to do |format|
@@ -124,6 +123,8 @@ class EventsController < ApplicationController
       @events = @events.order(sort_by)
     end
 
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true)
     @events = @events.page(params[:page]).per(5)
   end
 end
