@@ -11,6 +11,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+
+      <h2>Admin Interface</h2>
       <% if flash[:notice].present? %>
         <div class="alert alert-success" role="alert">
           <%= flash[:notice] %>
@@ -24,7 +26,6 @@
 
       <%= yield %>
 
-      <%= link_to "Admin", admin_events_path %>
     </div>
   </div>
 </div>
