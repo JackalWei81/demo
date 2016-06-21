@@ -14,4 +14,6 @@ class Event < ActiveRecord::Base
   has_one :location, :dependent => :destroy
 
   belongs_to :user
+
+  accepts_nested_attributes_for :location, :allow_destroy => true, :reject_if => :all_blank
 end

@@ -43,9 +43,21 @@
   <%= f.label :group_ids, "Language" %>
   <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
 </div>
-<!-- 第一個欄位是name，第二個欄位可選的選項，接下來為各選項的id和name -->
+<!-- 第一個欄位是params name，第二個欄位可選的選項，接下來為各選項的id和name -->
 
 <div class="form-group">
   <%= f.label :description, "Description" %>
   <%= f.text_area :description, :class => "form-control" %>
 </div>
+<!-- location form -->
+<%= f.fields_for :location do |location_form| %>
+<p>
+<%= location_form.label :name, "Location Name" %>
+<%= location_form.text_field :name %>
+
+<% unless location_form.object.new_record? %>
+    <%= location_form.label :_destroy, 'Remove:' %>
+    <%= location_form.check_box :_destroy %>
+<% end %>
+</p>
+<% end %>
