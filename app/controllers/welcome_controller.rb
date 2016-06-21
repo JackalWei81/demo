@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  def indxe
+  def index
   end
 
   def say
