@@ -4,4 +4,7 @@ class Event < ActiveRecord::Base
   #這是新版Document裡提供的寫法
 
   has_many :attendees
+  belongs_to :category
+
+  delegate :name, :to => :category, :prefix => true, :allow_nil => true
 end

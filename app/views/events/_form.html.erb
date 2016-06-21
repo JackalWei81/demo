@@ -10,6 +10,31 @@
   <%= f.label :name, "Name" %>
   <%= f.text_field :name, :class => "form-control" %>
 </div>
+
+<div class="form-group">
+  <%= f.label :category_id, "Category" %>
+  <%= f.select :category_id, Category.all.map{|x| [x.name, x.id]}, :class => "form-control", :prompt => "Please Select" %>
+</div>
+<!--
+使用:include_blank，為設定一個預設的選項，期值為空值，表示不選的意思。
+使用:prompt，若原本為空值，則會有此選項，若原本不為空值，表一定得選擇，則不會出現此選項，
+所以為提醒使用者必須要選擇的功能。 -->
+<!-- <div class="form-group">
+  <%= f.label :category_id, "Category" %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, :class => "form-control" %>
+</div>
+和上面的方式是等價的，一個用select，另一個用collection_select，差別在於內部一個需要寫code block，一個已經包好，直接代入變數即可  -->
+
+<!-- <div class="form-group">
+  <%= f.label :category_id, "Category" %>
+  <% Category.all.each do |c| %>
+  <%= f.radio_button :category_id, c.id%> <%= c.name %>
+  <% end %>
+</div>
+單選的方式除了可以用下拉式選單，也可以採用Radio button的方式實作，以上為參考 -->
+
+
+
 <div class="form-group">
   <%= f.label :description, "Description" %>
   <%= f.text_area :description, :class => "form-control" %>
