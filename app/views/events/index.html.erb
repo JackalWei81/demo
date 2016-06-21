@@ -4,11 +4,12 @@
 </p>
 
 
-
+<%= form_tag bulk_update_events_path do %>
 <table>
 <% @events.each do |event| %>
   <tr>
     <td>
+      <%= check_box_tag "ids[]", event.id, false %>
       <%= event.name%>
     </td>
     <td>
@@ -35,6 +36,10 @@
   </tr>
 <% end %>
 </table>
+
+<%= submit_tag "Delete", :data => {:confirm => "Are you sure?"} %>
+<%= submit_tag "Publish" %>
+<% end %>
 <p>
 <%= link_to 'New Event', new_event_path %>
 </p>

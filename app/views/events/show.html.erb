@@ -1,6 +1,7 @@
 
 <h2><%= @event.name %></h2>
 
+<h3><%= @event.status %></h3>
 <% @event.groups.each do |g| %>
   <li><%= g.name %></li>
 <% end %>

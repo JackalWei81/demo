@@ -75,11 +75,27 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def bulk_update
+    ids = Array(params[:ids])
+    events = ids.map{|i| Event.find_by_id(i)}.compact
+    #find_by_id => 找不到值會回傳nil
+    #compact會將陣列內的nil去除。
+
+    if params[:commit] == "Publish"
+      events.each{|e| e.update( :status => "published" )}
+      flash[:notice] = "發佈成功"
+    elsif params[:commit] == "Delete"
+      events.each{|e| e.destroy}
+      flash[:alert] = "刪除成功"
+    end
+
+    redirect_to events_path
+  end
 
   #private method
   private
   def event_params
-    params.require(:event).permit(:name, :description, :category_id, :group_ids =>[])
+    params.require(:event).permit(:name, :description, :status, :category_id, :group_ids =>[])
   end
 
   def set_event
