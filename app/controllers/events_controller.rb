@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_action :set_event, :only => [:show, :edit, :update, :destroy]
+  before_action :set_event, :only => [:show, :edit, :update, :destroy, :dashboard]
 
   #public action
   # GET /events/index
@@ -36,6 +36,9 @@ class EventsController < ApplicationController
       format.xml # show.xml.builder
       format.json { render :json => { id: @event.id, name: @event.name }.to_json }
     end
+  end
+
+  def dashboard
   end
 
   # GET /events/new
