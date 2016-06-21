@@ -15,7 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 
-gem "kaminari"
+gem 'kaminari'
+
+gem 'paperclip'
 
 gem 'devise'
 

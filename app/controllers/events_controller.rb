@@ -66,6 +66,9 @@ class EventsController < ApplicationController
 
   # PATCH /events/:id
   def update
+    if params[:remove_logo] == "1"
+      @event.logo = nil
+    end
     if @event.update(event_params)
       redirect_to event_path(@event)
       flash[:notice] = "編輯成功"
@@ -100,7 +103,7 @@ class EventsController < ApplicationController
 
   #private method
   def event_params
-    params.require(:event).permit(:name, :description, :category_id, :location_attributes => [:id, :name, :_destroy] )
+    params.require(:event).permit(:name, :logo, :description, :category_id, :location_attributes => [:id, :name, :_destroy] )
   end
 
   def set_event
@@ -112,7 +115,7 @@ class EventsController < ApplicationController
     if params[:keyword]
       @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
     else
-      @events = Event.all
+      @events = Event.order("id DESC")
     end
 
     #這邊先判斷有沒有:order，在判斷是否確定為"name"，是為了安全檢查，最好都是這樣做安全機制確認
