@@ -1,0 +1,10 @@
+<h1><%= @event.name %></h1>
+
+<% if @event.location %>
+  <p><%= @event.location.name %></p>
+  <%= link_to "edit", edit_event_location_path(@event), :class => "btn btn-primary" %>
+  <%= link_to "destroy", event_location_path(@event), :method => :delete, :class => "btn btn-danger" %>
+<% else %>
+  <p>N/A</p>
+  <p><%= link_to "Add location", new_event_location_path(@event), :class => "btn btn-info" %></p>
+<% end %>
