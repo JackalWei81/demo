@@ -34,6 +34,11 @@
 單選的方式除了可以用下拉式選單，也可以採用Radio button的方式實作，以上為參考 -->
 
 
+<div class="form-group">
+  <%= f.label :group_ids, "Language" %>
+  <%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+</div>
+<!-- 第一個欄位是name，第二個欄位可選的選項，接下來為各選項的id和name -->
 
 <div class="form-group">
   <%= f.label :description, "Description" %>

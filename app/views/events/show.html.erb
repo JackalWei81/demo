@@ -1,6 +1,11 @@
 
 <h2><%= @event.name %></h2>
 
+<% @event.groups.each do |g| %>
+  <li><%= g.name %></li>
+<% end %>
+<!-- @event.groups那行不可以加上=做顯示，否則會將groups之資料dump在頁面上 -->
+
 <p><%= @event.category.try(:name) %></p>
 <!-- <p><%= @event.category_name %></p>
 以上兩個方式皆為解決category若為nil時的處理方式，下面的方式要配合event model的delegate那行一起
