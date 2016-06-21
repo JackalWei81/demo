@@ -1,4 +1,10 @@
 <h1>Event List</h1>
+<p>
+  <%= link_to "Latest events", latest_events_path %>
+</p>
+
+
+
 <table>
 <% @events.each do |event| %>
   <tr>
