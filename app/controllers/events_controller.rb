@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   # GET /events/index
   # GET /events
   def index
-    @events = Event.page(params[:page]).per(5)
 
+    prepare_variable_for_index_template
     #提供支援別的檔案格式
     respond_to do |format|
       format.html #index.html.erb
@@ -96,12 +96,28 @@ class EventsController < ApplicationController
   end
 
   #private method
-  private
   def event_params
     params.require(:event).permit(:name, :description, :status, :category_id, :group_ids =>[])
   end
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def prepare_variable_for_index_template
+
+    if params[:keyword]
+      @events = Event.where( [ "name like ?", "%#{params[:keyword]}%" ] )
+    else
+      @events = Event.all
+    end
+
+    #這邊先判斷有沒有:order，在判斷是否確定為"name"，是為了安全檢查，最好都是這樣做安全機制確認
+    if params[:order]
+      sort_by = (params[:order]=="name") ? "name" : "id"
+      @events = @events.order(sort_by)
+    end
+
+    @events = @events.page(params[:page]).per(5)
   end
 end
