@@ -17,6 +17,8 @@ gem 'bootstrap-sass', '~> 3.3.4'
 
 gem "kaminari"
 
+gem 'devise'
+
 #postgresql
 gem 'pg'
 gem 'rails_12factor', group: :production
