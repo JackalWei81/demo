@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :enevts
+  has_many :enevts, :dependent => :destroy
 
   def short_name
     self.email.split("@").first
