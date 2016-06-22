@@ -32,6 +32,11 @@ class EventsController < ApplicationController
   # GET /events/:id
   def show
     @event = Event.find(params[:id])
+
+    if request.xhr?
+      render :layout => false
+    end
+
     respond_to do |format|
       format.html { @page_title = @event.name } # show.html.erb
       format.xml # show.xml.builder
