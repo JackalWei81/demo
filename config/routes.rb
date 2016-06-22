@@ -22,9 +22,11 @@ Rails.application.routes.draw do
   end
 
   resources :people
+
   get "/welcome/say_hello" => "welcome#say"
 
   get "/welcome" => "welcome#index"
+  get "/something" => "welcome#something"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

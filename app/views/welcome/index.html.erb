@@ -3,7 +3,19 @@
 
 <%= image_tag("ruby.gif") %>
 
+<div id="demo"></div>
 
-<div id="demo">
+<%= link_to "load something", "#", :id => "ajax-load" %>
 
-</div>
+<div id="content"></div>
+
+<script>
+  $("#ajax-load").on("click", function(e){
+    $.ajax({
+      url:"/something",
+      success: function(data){
+        $("#content").html(data)
+      }
+    })
+  });
+</script>
