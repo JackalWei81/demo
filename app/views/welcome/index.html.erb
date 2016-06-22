@@ -5,8 +5,11 @@
 
 <div id="demo"></div>
 
-<%= link_to "load something", "#", :id => "ajax-load" %>
+<p> <%= link_to "load something", "#", :id => "ajax-load" %> </p>
 
+<p> <%= link_to "load script", something_path, :remote => true %> </p>
+<!-- 此種方式為rails較常使用的ajax方式，用來解決不需要整頁刷新時的處理，如新增、修改或刪除資料，
+按讚等基本form操作功能 -->
 <div id="content"></div>
 
 <script>
