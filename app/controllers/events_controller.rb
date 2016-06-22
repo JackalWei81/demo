@@ -84,8 +84,13 @@ class EventsController < ApplicationController
   # DELETE /events/:id
   def destroy
     @event.destroy
-    flash[:alert] = "刪除成功"
-    redirect_to events_path
+    respond_to do |format|
+      format.html {
+        flash[:alert] = "刪除成功"
+        redirect_to events_path
+      }
+      format.js #destroy.js.erb
+    end
   end
 
   def bulk_update
