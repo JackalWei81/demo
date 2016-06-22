@@ -19,7 +19,7 @@
 <%= link_to 'Sort by Default', events_path %>
 
 <%= form_tag bulk_update_events_path do %>
-<table>
+<table class = "table">
 <% @events.each do |event| %>
   <tr>
     <td>
