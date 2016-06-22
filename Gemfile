@@ -22,6 +22,8 @@ gem 'paperclip'
 gem 'devise'
 
 gem 'ransack'
+
+gem 'omniauth-facebook'
 #postgresql
 gem 'pg'
 gem 'rails_12factor', group: :production
