@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get "/welcome" => "welcome#index"
   get "/something" => "welcome#something"
+
+  get "/ubike" => "welcome#ubike"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

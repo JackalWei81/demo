@@ -23,6 +23,8 @@ gem 'devise'
 
 gem 'ransack'
 
+gem 'rest-client'
+
 gem 'omniauth-facebook'
 #postgresql
 gem 'pg'
