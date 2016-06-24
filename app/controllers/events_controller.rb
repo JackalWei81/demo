@@ -110,6 +110,21 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def join
+    @event = Event.find(params[:id])
+    Membership.find_or_create_by( :event_id => @event.id, :user_id => current_user.id )
+
+    redirect_to :back
+  end
+
+  def withdraw
+    @event = Event.find(params[:id])
+    @membership = Membership.find_by( :event_id => @event.id, :user_id => current_user.id )
+    @membership.destroy
+
+    redirect_to :back
+  end
+
   #private method
   def event_params
     params.require(:event).permit(:name, :logo, :description, :category_id, :location_attributes => [:id, :name, :_destroy] )

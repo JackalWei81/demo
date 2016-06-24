@@ -1,5 +1,13 @@
+<h2><%= @event.name %>
 
-<h2><%= @event.name %></h2>
+<!-- 要確認是否已經有加入，則可以在user model新增一個一對多欄位，註記user join了哪些events -->
+<% unless event_join? %>
+  <%= link_to "Join", join_event_path(@event),:method => :post, :class => "btn btn-primary" %>
+<% end %>
+
+<% if event_join? %>
+  <%= link_to "Withdraw", withdraw_event_path(@event), :method => :post, :class => "btn btn-danger" %>
+<% end %></h2>
 
 <h3><%= @event.status %></h3>
 

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
     member do
       get :dashboard
+
+      post :join
+      post :withdraw
     end
   end
 
