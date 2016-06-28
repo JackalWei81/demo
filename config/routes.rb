@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   get "/something" => "welcome#something"
 
   get "/ubike" => "welcome#ubike"
+
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+    resources :events
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
