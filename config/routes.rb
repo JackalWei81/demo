@@ -42,6 +42,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  # resources :events do
+  #   resources :attendees, shallow: true
+  # end
+  # => 等同於下列
+  # resources :enevts do
+  #   resources :attendees, only: [:index, :new, :create]
+  # end
+  # resources :attendees, only: [:show, :edit, :update, :destroy]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
