@@ -35,6 +35,9 @@ Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
     resources :events
+
+    post "login" => "auth#login"
+    post "logout" => "auth#logout"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

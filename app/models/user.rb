@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
   has_many :enevts, :dependent => :destroy
 
+  before_create :generate_authentication_token
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
@@ -44,5 +45,25 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role == "admin"
+  end
+
+  def generate_authentication_token
+     self.authentication_token = Devise.friendly_token
+  end
+
+  def self.get_fb_data(access_token)
+    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token } }
+
+    if res.code == 200
+      JSON.parse( res.to_str )
+    else
+      Rails.logger.warn(res.body)
+      nil
+    end
+  end
+
+  def get_fb_data
+    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
+    JSON.parse(j)
   end
 end
