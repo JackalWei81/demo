@@ -1,8 +1,5 @@
 <h1>Hello, World!</h1>
 
-
-
-
 <iframe title="YouTube video player" width="480" height="390" src="http://www.youtube.com/v/<%= "jXdZlbH_ut8"%>&autoplay=1&controls=0&showinfo=0&modestbranding=1&disablekb=1" frameborder="0" allowfullscreen></iframe>
 
 <!-- YouTube使用iFrame嵌入Web pages，可設定參數參考https://developers.google.com/youtube/player_parameters -->
@@ -15,7 +12,7 @@
 <!-- Google Map使用iFrame嵌入Web pages，可設定參數參考https://developers.google.com/maps/documentation/embed/guide?hl=zh-tw -->
 
 <audio autoplay loop controls>
-  <source src="<%=http://pool.f13.mymedia.yam.com/mediacenter/26c881627dff745d7c9eb21131281a91/57901080/upload2/new/0/e/9/0e900dfa75d6bfd0a55a55d0b7437425.mp3 %>" type="audio/mpeg">
+  <source src="<%="http://pool.f13.mymedia.yam.com/mediacenter/26c881627dff745d7c9eb21131281a91/57901080/upload2/new/0/e/9/0e900dfa75d6bfd0a55a55d0b7437425.mp3" %>" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
 <!-- 主要會用的參數就是autoplay，loop和controls，再依據需求設定 -->
@@ -48,4 +45,12 @@ function notifyMe() {
   // At last, if the user has denied notifications, and you
   // want to be respectful there is no need to bother them any more.
 }
+$(function () {
+$('#until2d').countdown({until: '+2d'});
+});
 </script>
+
+
+
+
+
