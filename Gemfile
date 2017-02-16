@@ -20,6 +20,7 @@ gem 'kaminari'
 gem 'paperclip'
 
 gem 'devise'
+gem 'cancancan'
 
 gem 'ransack'
 

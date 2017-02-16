@@ -53,10 +53,14 @@
       <%= link_to "Get JSON", event_path(event, :format => :json), :class => "btn btn-default" %>
     </td>
     <td>
-      <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-warning"%>
+      <% if can? :update, @event %>
+        <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-warning"%>
+      <% end %>
     </td>
     <td>
-      <%= link_to 'Delete', event_path(event), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"}, :remote => true %>
+      <% if can? :delete, @event %>
+        <%= link_to 'Delete', event_path(event), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"}, :remote => true %>
+      <% end %>
     </td>
   </tr>
 <% end %>
@@ -66,7 +70,9 @@
 <%= submit_tag "Publish" %>
 <% end %>
 <p>
-<%= link_to 'New Event', new_event_path %>
+<% if can? :create, @event %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
 </p>
 <%= paginate @events %>
 
